@@ -35,7 +35,7 @@ public class Calculator {
             return 0;
         }
         else{
-            String[] numbersList = numbers.split(","); //List of numbers input in the string
+            String[] numbersList = numbers.split(",|\n"); //List of numbers input in the string
             return total(numbersList);
         }
     }

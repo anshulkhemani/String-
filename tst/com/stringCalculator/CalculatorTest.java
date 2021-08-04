@@ -31,4 +31,9 @@ class CalculatorTest {
     {
         assertEquals(28,Calculator.add("2,1,4,8,4,2,7"));
     }
+    @Test
+    public void shouldReturnSumWithNewline()
+    {
+        assertEquals(28,Calculator.add("2,1,4\n8,4\n2,7"));
+    }
 }
