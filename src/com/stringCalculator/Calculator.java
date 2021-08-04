@@ -53,10 +53,30 @@ public class Calculator {
         }
         else{
             String separator = ","; //Default separator
-            if(numbers.matches("//(.*)\n(.*)")) //Example pattern "//;\n1;2"
+            int position = 2;
+            String character="";
+            if(numbers.matches("//(.*)\n(.*)")) {
+                separator = Character.toString(numbers.charAt(position)); //Fetching the separator from string
+                numbers = numbers.substring(4); //Remove the delimiter characters from string
+            }
+            else if(numbers.matches("//(.*)")) //Example pattern "//;\n1;2"
             {
-                separator = Character.toString(numbers.charAt(2)); //Fetching the separator from string
-                numbers = numbers.substring(4); //Remove first 4 characters from string
+                separator="";
+                position = 3;
+                while (numbers.charAt(position) != ']') {
+
+                    character = Character.toString(numbers.charAt(position)); //Fetching the separator from string and appending
+                    if (character.equals("*")||character.equals("^")||character.equals("+"))
+                    {
+                        separator+="\\" + character;
+                    }
+                    else
+                    {
+                        separator += Character.toString(numbers.charAt(position));
+                    }
+                    position++;
+                }
+                numbers = numbers.substring(position+3); //Remove the delimiter characters from string
             }
             String[] numbersList = numbers.split(separator+"|\n"); //List of numbers input in the string separated by separator
             return total(numbersList);

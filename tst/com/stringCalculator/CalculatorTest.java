@@ -37,7 +37,7 @@ class CalculatorTest {
         assertEquals(28,Calculator.add("2,1,4\n8,4\n2,7"));
     }
     @Test
-    public void shouldReturnSumWithCustomSeparator(){
+    public void shouldReturnSumWithCustomDelimiter(){
         assertEquals(10, Calculator.add("//;\n1;2;3;4"));
     }
     @Test
@@ -59,5 +59,9 @@ class CalculatorTest {
     @Test
     public void ignoreNumbersGT1000(){
         assertEquals(2, Calculator.add("2,1001"));
+    }
+    @Test
+    public void shouldReturnSumWithLongDelimiter(){
+        assertEquals(6, Calculator.add("//[***]\\n1***2***3"));
     }
 }
