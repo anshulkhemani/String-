@@ -35,7 +35,13 @@ public class Calculator {
             return 0;
         }
         else{
-            String[] numbersList = numbers.split(",|\n"); //List of numbers input in the string
+            String separator = ","; //Default separator
+            if(numbers.matches("//(.*)\n(.*)")) //Example pattern "//;\n1;2"
+            {
+                separator = Character.toString(numbers.charAt(2)); //Fetching the separator from string
+                numbers = numbers.substring(4); //Remove first 4 characters from string
+            }
+            String[] numbersList = numbers.split(separator+"|\n"); //List of numbers input in the string separated by separator
             return total(numbersList);
         }
     }

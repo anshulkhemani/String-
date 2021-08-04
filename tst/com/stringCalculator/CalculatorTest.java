@@ -36,4 +36,8 @@ class CalculatorTest {
     {
         assertEquals(28,Calculator.add("2,1,4\n8,4\n2,7"));
     }
+    @Test
+    public void shouldReturnSumWithCustomSeparator(){
+        assertEquals(10, Calculator.add("//;\n1;2;3;4"));
+    }
 }
