@@ -64,4 +64,8 @@ class CalculatorTest {
     public void shouldReturnSumWithLongDelimiter(){
         assertEquals(6, Calculator.add("//[***]\\n1***2***3"));
     }
+    @Test
+    public void shouldReturnSumWithMultipleDelimiters(){
+        assertEquals(6, Calculator.add("//[*][%]\\n1*2%3"));
+    }
 }

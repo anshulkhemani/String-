@@ -55,28 +55,31 @@ public class Calculator {
             String separator = ","; //Default separator
             int position = 2;
             String character="";
-            if(numbers.matches("//(.*)\n(.*)")) {
+            if(numbers.matches("//(.*)\n(.*)")) { //Example pattern "//;\n1;2"
                 separator = Character.toString(numbers.charAt(position)); //Fetching the separator from string
                 numbers = numbers.substring(4); //Remove the delimiter characters from string
             }
-            else if(numbers.matches("//(.*)")) //Example pattern "//;\n1;2"
+            else if(numbers.matches("//(.*)")) //Example pattern "//[*][%]\n1*2%3"
             {
                 separator="";
-                position = 3;
-                while (numbers.charAt(position) != ']') {
-
-                    character = Character.toString(numbers.charAt(position)); //Fetching the separator from string and appending
-                    if (character.equals("*")||character.equals("^")||character.equals("+"))
-                    {
-                        separator+="\\" + character;
-                    }
-                    else
-                    {
-                        separator += Character.toString(numbers.charAt(position));
+                position = 2;
+                while(numbers.charAt(position)=='[') { //while there are delimiters
+                    position++;
+                    while (numbers.charAt(position) != ']') { //until each delimiter length
+                        character = Character.toString(numbers.charAt(position)); //Fetching the delimiter from string and appending
+                        if (character.equals("*") || character.equals("^") || character.equals("+")) { //java regex exceptions
+                            separator += "\\" + character;
+                        } else {
+                            separator += character;
+                        }
+                        position++; //next character in string
                     }
                     position++;
+                    if(numbers.charAt(position)=='[') { //check if there is next delimiter
+                        separator += "|";
+                    }
                 }
-                numbers = numbers.substring(position+3); //Remove the delimiter characters from string
+                numbers = numbers.substring(position+2); //Remove the delimiter characters from string
             }
             String[] numbersList = numbers.split(separator+"|\n"); //List of numbers input in the string separated by separator
             return total(numbersList);
