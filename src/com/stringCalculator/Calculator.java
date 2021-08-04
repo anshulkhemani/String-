@@ -36,7 +36,9 @@ public class Calculator {
                     negatives += ("," + number);
                 }
             }
-            sum += currentNumber; //Converting each number in string and adding in sum
+            else if(currentNumber<=1000) { //Ignoring numbers greater than 1000
+                sum += currentNumber; //Converting each number in string and adding in sum
+            }
         }
         if(!negatives.equals("")){
             throw new IllegalArgumentException("Negatives not allowed : " + negatives);
