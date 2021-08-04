@@ -23,10 +23,25 @@ public class Calculator {
     }
 
     private static int total(String[] numbers){
-        int sum = 0;
+        int sum = 0,currentNumber;
+        String negatives = "";
         for(String number : numbers){
-            sum += convertToInt(number); //Converting each number in string and adding in sum
+            currentNumber = convertToInt(number);
+            if(currentNumber < 0){  //Checking for negative values
+                if(negatives.equals(""))
+                {
+                    negatives = number;
+                }
+                else {
+                    negatives += ("," + number);
+                }
+            }
+            sum += currentNumber; //Converting each number in string and adding in sum
         }
+        if(!negatives.equals("")){
+            throw new IllegalArgumentException("Negatives not allowed : " + negatives);
+        }
+
         return sum;
     }
 

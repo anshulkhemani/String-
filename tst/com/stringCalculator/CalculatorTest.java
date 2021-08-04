@@ -40,4 +40,20 @@ class CalculatorTest {
     public void shouldReturnSumWithCustomSeparator(){
         assertEquals(10, Calculator.add("//;\n1;2;3;4"));
     }
+    @Test
+    public void checkForNegativeNumbers(){
+        try {
+            Calculator.add("-2,8");
+        }
+        catch (IllegalArgumentException e){
+            assertEquals(e.getMessage(), "Negatives not allowed : -2");
+        }
+
+        try {
+            Calculator.add("1,-2,-5,9,-10,0");
+        }
+        catch (IllegalArgumentException e){
+            assertEquals(e.getMessage(), "Negatives not allowed : -2,-5,-10");
+        }
+    }
 }
