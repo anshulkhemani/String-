@@ -26,4 +26,9 @@ class CalculatorTest {
     {
         assertEquals(3,Calculator.add("2,1"));
     }
+    @Test
+    public void shouldReturnSumOnNValues()
+    {
+        assertEquals(28,Calculator.add("2,1,4,8,4,2,7"));
+    }
 }
