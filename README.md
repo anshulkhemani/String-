@@ -1,3 +1,2 @@
 # String-Calculator
-All the instructions can be found here
-https://osherove.com/tdd-kata-1
+A simple calculator which takes a string and returns the result. This demonstrates step by step Test Driven Development (TDD).
